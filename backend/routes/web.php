@@ -17,4 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/saveZipCodes', 'GasStationController@saveZipCodes');
+Route::get('/states', 'GasStationController@getStates');
+Route::get('/municipalities/{state}', 'GasStationController@getMunicipalities');
+Route::get('/zip-codes/{state}/{municipality}', 'GasStationController@getZipCodes');
 Route::get('/gasStations', 'GasStationController@index');
