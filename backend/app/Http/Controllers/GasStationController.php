@@ -42,6 +42,7 @@ class GasStationController extends Controller
             ->select('state')
             ->distinct()
             ->groupBy('state')
+            ->orderBy('state', 'asc')
             ->get();
         return response()->json(['data' => $states]);
     }
@@ -55,6 +56,7 @@ class GasStationController extends Controller
             ->distinct()
             ->where(['state' => $state])
             ->groupBy('municipality')
+            ->orderBy('municipality', 'asc')
             ->get();
         return response()->json(['data' => $municipalities]);
     }
