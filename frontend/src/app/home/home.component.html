@@ -1,3 +1,4 @@
+<div *ngIf="loading" class="loading">Loading&#8230;</div>
 <div class="container">
   <mat-card>
     <form [formGroup]="form" class="inputs">
@@ -18,8 +19,7 @@
         </mat-select>
       </mat-form-field>
       <div class="button">
-        <button [ngClass]="{'disabled' : form.invalid}" [disabled]="form.invalid" mat-raised-button
-          color="accent" (click)="getZipCodes()">Buscar</button>
+        <button [ngClass]="{'disabled' : form.invalid}" [disabled]="form.invalid" mat-raised-button (click)="getZipCodes()">Buscar</button>
       </div>
     </form>
   </mat-card>

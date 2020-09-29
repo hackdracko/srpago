@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   showMap = false;
   title = 'Sin información';
   street = '';
+  loading = false;
 
   // google maps zoom level
   zoom: number = 11;
@@ -48,22 +49,28 @@ export class HomeComponent implements OnInit {
   }
 
   getStates() {
+    this.loading = true;
     this._gasService.getStates().then(res => {
       this.states = res.data;
+      this.loading = false;
     });
   }
 
   getMunicipalities($event) {
+    this.loading = true;
     this.municipalities = null;
     this._gasService.getMunicipalities($event.value).then(res => {
       this.municipalities = res.data;
+      this.loading = false;
     });
   }
 
   getZipCodes() {
+    this.loading = true;
     let state = this.state.value;
     let municipality = this.municipality.value;
     this._gasService.getZipCodes(state, municipality).then(res => {
+      this.loading = false;
       if(res.data.length > 0) {
         this.markers = [];
         this.dataSource = new MatTableDataSource(res.data);
