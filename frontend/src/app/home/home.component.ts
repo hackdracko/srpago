@@ -41,6 +41,9 @@ export class HomeComponent implements OnInit {
     this.getStates();
   }
 
+  /*
+  * Creating form 
+  */
   createForm() {
     this.form = this.fb.group({
       state: ['', [Validators.required]],
@@ -48,6 +51,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /*
+  * Service to get States 
+  */
   getStates() {
     this.loading = true;
     this._gasService.getStates().then(res => {
@@ -56,6 +62,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /*
+  * Service to get Municipalities with filter State
+  */
   getMunicipalities($event) {
     this.loading = true;
     this.municipalities = null;
@@ -65,6 +74,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  /*
+  * Service to get Zip Codes with filters State and Municipalit, and create mark for Maps
+  */
   getZipCodes() {
     this.loading = true;
     let state = this.state.value;
@@ -109,6 +121,9 @@ export class HomeComponent implements OnInit {
     return this.form.get('municipality');
   }
 
+  /*
+  * Show information when click Marker
+  */
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
   }

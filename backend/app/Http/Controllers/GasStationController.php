@@ -108,6 +108,9 @@ class GasStationController extends Controller
         return response()->json(['data' => $arrayZipCodes]);
     }
 
+    /*
+    *   Function to Get unique Element
+    */
     public function getUniqueElement($arrayFilter) {
         $obj = null;
         foreach ($arrayFilter as $value) {
@@ -116,6 +119,9 @@ class GasStationController extends Controller
         return $obj;
     }
 
+    /*
+    *   Function to Save Zip Code
+    */
     public function saveZipCode($data) {
         $zipCode = new ZipCode();
         $zipCode->zip_code = $data[0];
