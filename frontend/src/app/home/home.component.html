@@ -1,0 +1,64 @@
+<div class="container">
+  <mat-card>
+    <form [formGroup]="form" class="inputs">
+      <mat-form-field class="field">
+        <mat-label>Elige un Estado</mat-label>
+        <mat-select formControlName="state" (selectionChange)="getMunicipalities($event)">
+          <mat-option *ngFor="let state of states" [value]="state.state">
+            {{state.state}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="field">
+        <mat-label>Elige un Municipio</mat-label>
+        <mat-select formControlName="municipality">
+          <mat-option *ngFor="let municipality of municipalities" [value]="municipality.municipality">
+            {{municipality.municipality}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="button">
+        <button [ngClass]="{'disabled' : form.invalid}" [disabled]="form.invalid" mat-raised-button
+          color="accent" (click)="getZipCodes()">Buscar</button>
+      </div>
+    </form>
+  </mat-card>
+  <div class="map">
+    
+  </div>
+  <div class="table">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->    
+      <!-- Position Column -->
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+        <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ciudad </th>
+        <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="municipality">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Municipio </th>
+        <td mat-cell *matCellDef="let element"> {{element.municipality}} </td>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="settling">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Asentamiento </th>
+        <td mat-cell *matCellDef="let element"> {{element.settling}} </td>
+      </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="zp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Codigo Postal </th>
+        <td mat-cell *matCellDef="let element"> {{element.zip_code}} </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
