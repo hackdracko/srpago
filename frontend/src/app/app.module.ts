@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GasService } from './services/gas.service';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,11 @@ import { GasService } from './services/gas.service';
   ],
   imports: [
     BrowserModule,
+    AgmCoreModule.forRoot({
+      // please get your own API key here:
+      // https://developers.google.com/maps/documentation/javascript/get-api-key?hl=en
+      apiKey: 'AIzaSyBDxIVytf5Eyh8UkNIx1q6_lU1Dt4K7Wts'
+    }),
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
